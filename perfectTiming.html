@@ -1,0 +1,95 @@
+<head>
+  <title>perfectTiming</title>
+</head>
+
+<body>
+    {{>headLine}}
+    {{>inputField}}
+    {{>countUp}}
+    {{>countDown}}
+    <p style="text-align:center; margin-top: 50px;">made with <a href="https://www.meteor.com/">Meteor.js</a> by <a href="http://www.taoliu.xyz">Tao Liu</a> - copyright © Tao Liu 2015</p>
+</body>
+
+<template name="warning">
+    <div style="text-align:center;margin-top:10px;color:red;">Please enter a valid number!</div>
+</template>
+<!-- headline -->
+<template name="headLine">
+    <div class="page-header text-center" >
+        <h1>Welcome to Perfect Timing!</h1>
+    </div>
+</template>
+<!-- inputfield -->
+<template name="inputField">
+    <div class="row">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Input a number to specify how many seconds to count up to / down from" id="inputField">
+                <span class="input-group-btn">
+        <button class="btn btn-default" type="button" id="go">Go</button>
+      </span>
+            </div>
+
+        </div>
+
+        <div class="col-lg-3"></div>
+        
+    </div>
+    {{#if enterWrong}}
+        {{>warning}}
+    {{/if}}
+</template>
+<!-- countup -->
+<template name="countUp">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+            {{>displayCountUp}}
+        </div>
+    </div>
+</template>
+<!-- countdown -->
+<template name="countDown">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 text-center">
+            {{> displayCountDown}}
+        </div>
+    </div>
+</template>
+<!-- display -->
+<template name="displayCountDown">
+    <h1><span>Counting Down...</span></h1>
+    <h1><span class="label label-default inline">{{days}}</span></h1>
+    <h1><span class="inline unit">{{#if daysPlural}}Days{{else}}Day{{/if}}</span></h1>
+    <h1><span class="label label-default inline">{{hours}}</span></h1>
+    <h1><span class="inline unit">{{#if hoursPlural}}Hours{{else}}Hour{{/if}}</span></h1>
+    <h1><span class="label label-default inline">{{minutes}}</span></h1>
+    <h1><span class="inline unit">{{#if minutesPlural}}Minutes{{else}}Minute{{/if}}</span></h1>
+    <h1><span class="label label-default inline">{{seconds}}</span></h1>
+    <h1><span class="inline unit">{{#if secondsPlural}}Seconds{{else}}Second{{/if}}</span></h1>
+    
+    {{#if disable}}
+    <h1><span><button class="btn btn-default inline downStart disabled" type="button">Start/Pause</button></span></h1>
+    {{else}}
+    <h1><span><button class="btn btn-default inline downStart" type="button">Start/Pause</button></span></h1>
+    {{/if}}
+    <h1><span><button class="btn btn-default inline downReset" type="button" id="reset">Reset</button></span></h1>
+</template>
+
+<template name="displayCountUp">
+    <h1><span>Counting Up...</span></h1>
+    <h1><span class="label label-default inline">{{days}}</span></h1>
+    <h1><span class="inline unit">{{#if daysPlural}}Days{{else}}Day{{/if}}</span></h1>
+    <h1><span class="label label-default inline">{{hours}}</span></h1>
+    <h1><span class="inline unit">{{#if hoursPlural}}Hours{{else}}Hour{{/if}}</span></h1>
+    <h1><span class="label label-default inline">{{minutes}}</span></h1>
+    <h1><span class="inline unit">{{#if minutesPlural}}Minutes{{else}}Minute{{/if}}</span></h1>
+    <h1><span class="label label-default inline">{{seconds}}</span></h1>
+    <h1><span class="inline unit">{{#if secondsPlural}}Seconds{{else}}Second{{/if}}</span></h1>
+    {{#if disable}}
+    <h1><span><button class="btn btn-default inline upStart disabled" type="button">Start/Pause</button></span></h1>
+    {{else}}
+    <h1><span><button class="btn btn-default inline upStart" type="button">Start/Pause</button></span></h1>
+    {{/if}}
+    <h1><span><button class="btn btn-default inline upReset" type="button" id="reset">Reset</button></span></h1>
+</template>
